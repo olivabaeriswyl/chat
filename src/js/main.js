@@ -30,6 +30,8 @@ onSnapshot(q, (querySnapshot) => {
   querySnapshot.forEach((doc) => {
     messages.push(doc.data())
   })
+  messages.reverse()
+
   const messagesHTML = messages.map((message) => {
     return `<div class="message">
       <div class="message-time">${dayjs(message.time.toDate()).format(
@@ -41,6 +43,7 @@ onSnapshot(q, (querySnapshot) => {
   })
 
   messagesContainer.innerHTML = messagesHTML.join('')
+  messagesContainer.scrollTop = messagesContainer.scrollHeight
 })
 
 const form = document.querySelector('[data-form]')
