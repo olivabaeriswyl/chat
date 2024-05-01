@@ -50,12 +50,14 @@ const form = document.querySelector('[data-form]')
 
 form.addEventListener('submit', function (event) {
   event.preventDefault()
-  const author = form.querySelector('[name=author]').value
-  const text = form.querySelector('[name=text]').value
+  const authorField = form.querySelector('[name=author]')
+  const textField = form.querySelector('[name=text]')
 
   addDoc(collection(db, 'messages'), {
-    author,
-    text,
+    author: authorField.value,
+    text: textField.value,
     time: new Date(),
   })
+
+  textField.value = ''
 })
