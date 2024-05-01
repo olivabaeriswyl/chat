@@ -13,11 +13,21 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
+const messagesContainer = document.querySelector('[data-messages]')
+
 const q = query(collection(db, 'messages'))
 onSnapshot(q, (querySnapshot) => {
   const messages = []
   querySnapshot.forEach((doc) => {
     messages.push(doc.data())
   })
-  console.log(messages)
+  const messagesHTML = messages.map((message) => {
+    return `<div class="message">
+      <div class="message-time">${message.time}</div>
+      <div class="message-user">${message.author}</div>
+      <div class="message-text">${message.text}</div>
+    </div>`
+  })
+
+  messagesContainer.innerHTML = messagesHTML.join('')
 })
