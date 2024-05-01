@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app'
+import { getFirestore, collection, query, onSnapshot } from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCCmJAAByoF5V4JCP9Bw86Amm1UA2s6-Qw',
@@ -10,5 +11,13 @@ const firebaseConfig = {
 }
 
 const app = initializeApp(firebaseConfig)
+const db = getFirestore(app)
 
-console.log(app)
+const q = query(collection(db, 'messages'))
+onSnapshot(q, (querySnapshot) => {
+  const messages = []
+  querySnapshot.forEach((doc) => {
+    messages.push(doc.data())
+  })
+  console.log(messages)
+})
