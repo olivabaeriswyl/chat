@@ -6,6 +6,7 @@ import {
   orderBy,
   limit,
   onSnapshot,
+  addDoc,
 } from 'firebase/firestore'
 import dayjs from 'dayjs'
 
@@ -40,4 +41,18 @@ onSnapshot(q, (querySnapshot) => {
   })
 
   messagesContainer.innerHTML = messagesHTML.join('')
+})
+
+const form = document.querySelector('[data-form]')
+
+form.addEventListener('submit', function (event) {
+  event.preventDefault()
+  const author = form.querySelector('[name=author]').value
+  const text = form.querySelector('[name=text]').value
+
+  addDoc(collection(db, 'messages'), {
+    author,
+    text,
+    time: new Date(),
+  })
 })
