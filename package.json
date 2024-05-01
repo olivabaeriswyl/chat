@@ -35,5 +35,8 @@
     "posthtml-include": "^1.7.4",
     "rimraf": "^3.0.2",
     "sass": "^1.69.5"
+  },
+  "dependencies": {
+    "firebase": "^10.11.1"
   }
 }
