@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { getFirestore, collection, query, onSnapshot } from 'firebase/firestore'
+import dayjs from 'dayjs'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCCmJAAByoF5V4JCP9Bw86Amm1UA2s6-Qw',
@@ -23,7 +24,9 @@ onSnapshot(q, (querySnapshot) => {
   })
   const messagesHTML = messages.map((message) => {
     return `<div class="message">
-      <div class="message-time">${message.time}</div>
+      <div class="message-time">${dayjs(message.time.toDate()).format(
+        'HH:mm:ss'
+      )}</div>
       <div class="message-user">${message.author}</div>
       <div class="message-text">${message.text}</div>
     </div>`
