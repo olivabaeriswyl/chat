@@ -9,17 +9,27 @@ import {
 } from 'firebase/firestore'
 import dayjs from 'dayjs'
 
-const getMessages = function () {
-  const db = getFirestore(app)
+const prepareMessage = function (message) {
+  const formattedTime = dayjs(message.time.toDate()).format('HH:mm:ss')
+  return `
+  <div class="message">
+    <div class="message-time">${formattedTime}</div>
+    <div class="message-user">${message.author}</div>
+    <div class="message-text">${message.text}</div>
+  </div>`
+}
 
+const getMessages = function () {
   const messagesContainer = document.querySelector('[data-messages]')
 
-  const q = query(
+  const db = getFirestore(app)
+  const messagesQuery = query(
     collection(db, 'messages'),
     orderBy('time', 'desc'),
     limit(20)
   )
-  onSnapshot(q, (querySnapshot) => {
+
+  onSnapshot(messagesQuery, (querySnapshot) => {
     const messages = []
     querySnapshot.forEach((doc) => {
       messages.push(doc.data())
@@ -27,13 +37,7 @@ const getMessages = function () {
     messages.reverse()
 
     const messagesHTML = messages.map((message) => {
-      return `<div class="message">
-      <div class="message-time">${dayjs(message.time.toDate()).format(
-        'HH:mm:ss'
-      )}</div>
-      <div class="message-user">${message.author}</div>
-      <div class="message-text">${message.text}</div>
-    </div>`
+      return prepareMessage(message)
     })
 
     messagesContainer.innerHTML = messagesHTML.join('')
