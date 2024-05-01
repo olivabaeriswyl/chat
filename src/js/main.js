@@ -1,5 +1,12 @@
 import { initializeApp } from 'firebase/app'
-import { getFirestore, collection, query, onSnapshot } from 'firebase/firestore'
+import {
+  getFirestore,
+  collection,
+  query,
+  orderBy,
+  limit,
+  onSnapshot,
+} from 'firebase/firestore'
 import dayjs from 'dayjs'
 
 const firebaseConfig = {
@@ -16,7 +23,7 @@ const db = getFirestore(app)
 
 const messagesContainer = document.querySelector('[data-messages]')
 
-const q = query(collection(db, 'messages'))
+const q = query(collection(db, 'messages'), orderBy('time', 'desc'), limit(20))
 onSnapshot(q, (querySnapshot) => {
   const messages = []
   querySnapshot.forEach((doc) => {
