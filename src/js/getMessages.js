@@ -11,12 +11,15 @@ import dayjs from 'dayjs'
 
 // Fonction pour formater un message
 const prepareMessage = function (message) {
+  // On récupère l'auteur du message dans le formulaire, pour ajouter une classe CSS si c'est notre message
+  const author = document.querySelector('[name=author]').value
+
   // On formate le temps avec la librairie dayjs (voir https://day.js.org/docs/en/display/format pour les options de formatage)
   const formattedTime = dayjs(message.time.toDate()).format('HH:mm:ss')
 
   // On retourne le HTML du message
   return `
-  <div class="message">
+  <div class="message${message.author === author && ' is-mine'}">
     <div class="message-time">${formattedTime}</div>
     <div class="message-user">${message.author}</div>
     <div class="message-text">${message.text}</div>
