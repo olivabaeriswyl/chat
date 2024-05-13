@@ -16,9 +16,19 @@
 
 .message-text {
   padding: 10px;
+  color: white;
+  position: relative;
+}
+
+.message-text::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
   background: white;
   mix-blend-mode: difference;
-  color: black;
 }
 
 .message-time {
@@ -32,4 +42,8 @@
   height: 300px;
   overflow: auto;
   padding: 10px;
+}
+
+.message-user {
+  color: white;
 }

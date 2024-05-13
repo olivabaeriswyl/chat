@@ -7,17 +7,49 @@
     <link rel="stylesheet" href="scss/main.scss" />
   </head>
   <body>
-    <a href="static.html">Version statique</a>
+    <div>
+      <div class="username-all">
+        <div class="username-flexbox">
+          <div>
+            <img class="username-profil" src="img/username-profil.png" alt="" />
+          </div>
+          <div>
+            <h1 class="username-text">
+              username<br />
+              username
+            </h1>
+            <h1 class="username-text"></h1>
+          </div>
+        </div>
 
-    <!-- Ne pas enlever data-messages! -->
-    <div class="messages" data-messages></div>
+        <a class="button-dynamic" href="static.html">Version statique</a>
+      </div>
+
+      <div class="box-conversation">
+        <!-- Ne pas enlever data-messages! -->
+        <div class="messages" data-messages></div>
+
+        <form data-form>
+          <div class="writting-flexbox">
+            <input
+              class="writting writting-name"
+              type="text"
+              name="author"
+              placeholder="Nom"
+            />
+            <input
+              class="writting"
+              type="text"
+              name="text"
+              placeholder="Message"
+            />
+            <button class="writting-send" type="submit">Envoyer</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <!-- Ne pas enlever data-form, et ne pas changer le name des inputs! -->
-    <form data-form>
-      <input type="text" name="author" placeholder="Nom" />
-      <input type="text" name="text" placeholder="Message" />
-      <button type="submit">Envoyer</button>
-    </form>
 
     <script src="js/main.js" type="module"></script>
   </body>
