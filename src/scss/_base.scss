@@ -42,3 +42,20 @@ video {
 /* ====================================
 // base rules
 // ==================================== */
+
+body {
+  background: url(../img/background-img.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+@font-face {
+  font-family: "pilowlava";
+  src: url("../font/Pilowlava-Regular.woff2") format("woff2");
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}

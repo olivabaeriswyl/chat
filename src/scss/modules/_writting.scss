@@ -1,0 +1,32 @@
+.writting-send {
+  font-family: "pilowlava";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  background-color: black;
+  color: white;
+  padding: 16.5px 32px;
+  border-radius: 1000px 482px 865px 250px;
+  border: none;
+}
+
+.writting-name {
+  font-family: "pilowlava";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.writting {
+  background-color: rgb(255, 255, 255);
+  padding: 14px 30px;
+  border-radius: 38px 83px 134px 129px;
+  border: none;
+}
+
+.writting-flexbox {
+  display: flex;
+  justify-content: space-between;
+}
